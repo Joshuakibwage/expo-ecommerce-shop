@@ -3,7 +3,12 @@ import axiosInstance from "./axios";
 export const productApi = {
   getAll: async () => {
     const { data } = await axiosInstance.get("/admin/products");
-    return data;
+    // Normalize response: backend returns an array for products, but some endpoints
+    // or error responses may return an object. Ensure we always return an array
+    // so callers can safely call `map`.
+    if (Array.isArray(data)) return data;
+    if (Array.isArray(data?.products)) return data.products;
+    return [];
   },
 
   create: async (formData) => {
