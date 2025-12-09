@@ -147,6 +147,12 @@ const products = [
 
 const seedDatabase = async () => {
   try {
+    // Safety check: prevent accidental execution in production
+    if (ENV.NODE_ENV === "production") {
+      console.error("❌ Cannot run seed script in production environment");
+      process.exit(1);
+    }
+
     // Connect to MongoDB
     await mongoose.connect(ENV.DB_URL);
     console.log("✅ Connected to MongoDB");
