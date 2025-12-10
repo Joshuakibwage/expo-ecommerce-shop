@@ -3,6 +3,8 @@ import { orderApi, statsApi } from "../lib/api";
 import { DollarSignIcon, PackageIcon, ShoppingBagIcon, UsersIcon } from "lucide-react";
 import { capitalizeText, formatDate, getOrderStatusBadge } from "../lib/utils";
 
+
+
 function DashboardPage() {
   const { data: ordersData, isLoading: ordersLoading } = useQuery({
     queryKey: ["orders"],
@@ -53,6 +55,7 @@ function DashboardPage() {
           </div>
         ))}
       </div>
+      
 
       {/* RECENT ORDERS */}
       <div className="card bg-base-100 shadow-xl">
