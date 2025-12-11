@@ -16,14 +16,18 @@ const AuthScreen = () => {
       <View className="gap-2 mt-3">
         {/* GOOGLE SIGN IN BTN */}
         <TouchableOpacity
-          className="flex-row items-center justify-center bg-white border border-gray-300 rounded-full px-6 py-2"
-          onPress={() => handleSocialAuth("oauth_google")}
-          disabled={loadingStrategy !== null}
-          style={{
-            shadowOffset: { width: 0, height: 1 },
-            shadowOpacity: 0.1,
-            elevation: 2, // this is for android
-          }}
+            className="flex-row items-center justify-center bg-white border border-gray-300 rounded-full px-6 py-2"
+            onPress={() => handleSocialAuth("oauth_google")}
+            disabled={loadingStrategy !== null}
+            accessible={true}
+            accessibilityLabel="Sign in with Apple"
+            accessibilityRole="button"
+            accessibilityState={{ disabled: loadingStrategy !== null, busy: loadingStrategy === "oauth_apple" }}
+            style={{
+                shadowOffset: { width: 0, height: 1 },
+                shadowOpacity: 0.1,
+                elevation: 2, // this is for android
+            }}
         >
           {loadingStrategy === "oauth_google" ? (
             <ActivityIndicator size={"small"} color={"#4285f4"} />
@@ -51,7 +55,7 @@ const AuthScreen = () => {
           }}
         >
           {loadingStrategy === "oauth_apple" ? (
-            <ActivityIndicator size={"small"} color={"#4285f4"} />
+            <ActivityIndicator size={"small"} color={"#000000"} />
           ) : (
             <View className="flex-row items-center justify-center">
               <Image
