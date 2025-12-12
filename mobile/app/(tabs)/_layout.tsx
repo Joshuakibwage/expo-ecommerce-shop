@@ -39,7 +39,7 @@ const TabsLayout = () => {
         ),
         tabBarLabelStyle: {
           fontSize: 12,
-          fontWeight: 600,
+          fontWeight: "600",
         },
         headerShown: false,
       }}
